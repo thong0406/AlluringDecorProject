@@ -1,0 +1,45 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<FeedbackModel>
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Feedback</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Comment</th>
+                <th>Date Sent</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.User.Id == -1)
+                        {
+                            <i class="text-secondary">N/A</i>
+                        }
+                        else
+                        {
+                            @item.User.Username
+                        }
+                    </td>
+                    <td>@item.Comment</td>
+                    <td>@item.DateSent</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Username</th>
+                <th>Comment</th>
+                <th>Date Sent</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

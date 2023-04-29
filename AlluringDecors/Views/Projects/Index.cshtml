@@ -1,0 +1,73 @@
+﻿@using AlluringDecors.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Projects</h2>
+    <hr />
+    <h3 id="OnGoing">On-Going</h3>
+    <hr />
+    <div class="row">
+        @foreach (ProjectModel prj in ViewBag.OnGoing)
+        {
+            <div class="col col-sm-12 col-md-6 col-md-6 col-xl-6">
+                <div class="row my-3 border px-2 py-4 rounded m-2">
+                    <div class="col col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="w-100 rounded-circle" style="overflow: hidden">
+                            <img src="~/Images/@prj.ImagePath" class="w-100" />
+                        </div>
+                    </div>
+                    <div class="col col-sm-12 col-md-6 col-lg-8 col-xl-8">
+                        <h3>@prj.Name</h3>
+                        <hr />
+                        <p class="text-justify">@prj.Description</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <h3 id="UpComing">Up-Coming</h3>
+    <hr />
+    <div class="row">
+        @foreach (ProjectModel prj in ViewBag.UpComing)
+        {
+            <div class="col col-sm-12 col-md-6 col-md-6 col-xl-6">
+                <div class="row my-3 border px-2 py-4 rounded m-2">
+                    <div class="col col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="w-100 rounded-circle" style="overflow: hidden">
+                            <img src="~/Images/@prj.ImagePath" class="w-100" />
+                        </div>
+                    </div>
+                    <div class="col col-sm-12 col-md-6 col-lg-8 col-xl-8">
+                        <h3>@prj.Name</h3>
+                        <hr />
+                        <p class="text-justify">@prj.Description</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <h3 id="Acomplished">Acomplished</h3>
+    <hr />
+    <div class="row">
+        @foreach (ProjectModel prj in ViewBag.Acomplished)
+        {
+            <div class="col col-sm-12 col-md-6 col-md-6 col-xl-6">
+                <div class="row my-3 border px-2 py-4 rounded m-2">
+                    <div class="col col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="w-100 rounded-circle" style="overflow: hidden">
+                            <img src="~/Images/@prj.ImagePath" class="w-100" />
+                        </div>
+                    </div>
+                    <div class="col col-sm-12 col-md-6 col-lg-8 col-xl-8">
+                        <h3>@prj.Name</h3>
+                        <hr />
+                        <p class="text-justify">@prj.Description</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

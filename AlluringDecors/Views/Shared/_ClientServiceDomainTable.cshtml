@@ -1,0 +1,31 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<DomainModel>
+
+@foreach (DomainModel dmn in Model)
+{
+    <h3>@dmn.Name</h3>
+        <div class="row">
+            @{
+                foreach (ServiceDomainModel srvdmn in dmn.ServiceDomains)
+                {
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 p-2">
+                        <div class="card w-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="@Url.Action("Details", new { service = srvdmn.Service.Name, domain = dmn.Name })">@srvdmn.Service.Name</a></h5>
+                                @{
+                                    if (!User.Identity.IsAuthenticated)
+                                    {
+                                        @Html.ActionLink("Sign up to Service", "Index", "Account", null, new { @class = "w-100 btn btn-primary" });
+                                    }
+                                    else if (Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.User))
+                                    {
+                                        <button type="button" onclick="setModelServiceDomainId(@srvdmn.Id,'@dmn.Name - @srvdmn.Service.Name')" class="w-100 btn btn-primary">Sign up to Service</button>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+}

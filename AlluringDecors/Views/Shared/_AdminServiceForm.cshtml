@@ -1,0 +1,22 @@
+﻿@using AlluringDecors.Models;
+<h2>Create Service</h2>
+<hr />
+<div class="form-group">
+    <label for="CreateServiceDomain">Domain:</label>
+    <select type="text" class="form-control" id="CreateServiceDomain">
+        @foreach (DomainModel dmn in ViewBag.Domains)
+            {
+            <option value="dmn_@dmn.Id">@dmn.Name</option>
+        }
+    </select>
+</div>
+<div class="form-group">
+    <label for="CreateServiceService">Service:</label>
+    <select type="text" class="form-control" id="CreateServiceService">
+        @foreach (ServiceModel srv in ViewBag.Services)
+            {
+            <option value="srv_@srv.Id">@srv.Name</option>
+        }
+    </select>
+</div>
+<button type="button" onclick="createServiceDomain()" class="btn btn-primary">Create</button>

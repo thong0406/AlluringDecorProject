@@ -1,0 +1,21 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<AlluringDecors.Models.ServiceModel>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            <input class="form-control" id="ServiceName_@item.Id" type="text" value="@item.Name" />
+        </td>
+        <td>
+            <textarea class="form-control" id="ServiceDescription_@item.Id">@item.Description</textarea>
+        </td>
+        <td>
+            <button class="btn btn-primary rounded w-100" type="button" onclick="updateService(@item.Id)">Update</button>
+            <button type="button" class="btn btn-danger w-100 rounded" onclick="deleteService(@item.Id)">Delete</button>
+        </td>
+    </tr>
+}

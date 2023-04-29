@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="917591dbdac441288f920a843cc9e7bd" Name="Diagram1">
+        <EntityTypeShape EntityType="AlluringDecorModel.bill" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlluringDecorModel.domain" Width="1.5" PointX="1.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlluringDecorModel.feedback" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlluringDecorModel.project" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlluringDecorModel.role" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlluringDecorModel.service" Width="1.5" PointX="1.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlluringDecorModel.service_domain" Width="1.5" PointX="3.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlluringDecorModel.service_example" Width="1.5" PointX="3.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlluringDecorModel.service_request" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlluringDecorModel.user" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlluringDecorModel.user_role" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="AlluringDecorModel.bill_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="AlluringDecorModel.service_domain_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="AlluringDecorModel.feedback_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="AlluringDecorModel.user_role_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="AlluringDecorModel.service_domain_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="AlluringDecorModel.service_example_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="AlluringDecorModel.service_request_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="AlluringDecorModel.service_request_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="AlluringDecorModel.user_role_ibfk_2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

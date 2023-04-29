@@ -1,0 +1,54 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<AlluringDecors.Models.ServiceRequestModel>
+@{
+    ViewBag.Title = "Services";
+}
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceDomain.Domain.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceDomain.Service.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Receiver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+            @if (item.Status == "Accepted")
+            {
+                if (item.Bill.Id != -1)
+                {
+                    <a href="@Url.Action("Bills", "Client")#bil_@item.Bill.Id">View Bill here</a>
+                }
+                else
+                {
+                    <i class="text-secondary">No Bill has been sent.</i>
+                }
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateSent)
+        </td>
+        <td style="width: 10%;">
+            <!--data-toggle="modal" data-target="#detailsModal"-->
+            <a href="#/" class="" onclick="loadModal(@item.Id)">Edit</a> |
+            <a href="#/" class="text-danger" onclick="cancelRequest(@item.Id)">Cancel</a>
+        </td>
+    </tr>
+}

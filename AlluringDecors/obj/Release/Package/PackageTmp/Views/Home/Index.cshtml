@@ -1,0 +1,124 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        </div>
+        <div class="col-md-12 col-lg-6 col-xl-6">
+            <h2>Welcome To Alluring Decor</h2>
+            <article class="text-justify" id="ArticleWelcome">@ViewBag.text["Welcome"]</article>
+            <!-- Từ đoạn này a để lại tạm cũng được -->
+            @if (User.Identity.IsAuthenticated ? Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin) : false)
+            {
+                <a href="#/" onclick="editArticle('WelcomeEditForm')" class="ml-auto">Edit</a>
+                <div id="WelcomeEditForm" style="display: none;" class="border border-round p-2">
+                    <textarea id="WelcomeEdit" style="height: 400px;" class="w-100 form-control text-justify">@ViewBag.text["Welcome"]</textarea>
+                    <button type="button" class="btn btn-primary ml-auto mt-2" onclick="updateText('Welcome')">Update</button>
+                </div>
+            }
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <h2>Services</h2>
+            <article id="ArticleServices" class="text-justify">@ViewBag.text["Services"]</article>
+            @if (User.Identity.IsAuthenticated ? Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin) : false)
+            {
+                <a href="#/" onclick="editArticle('ServicesEditForm')" class="ml-auto">Edit</a>
+                <div id="ServicesEditForm" style="display: none;" class="border border-round p-2">
+                    <textarea id="ServicesEdit" style="height: 400px;" class="w-100 form-control text-justify">@ViewBag.text["Services"]</textarea>
+                    <button type="button" class="btn btn-primary ml-auto mt-2" onclick="updateText('Services')">Update</button>
+                </div>
+            }
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+        </div>
+    </div>
+
+    <hr />
+    
+    <h2>Why You Should Choose Us</h2>
+    <hr />
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <h2>Best Material</h2>
+            <article id="ArticleBestMaterial" class="text-justify">@ViewBag.text["BestMaterial"]</article>
+            @if (User.Identity.IsAuthenticated ? Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin) : false)
+            {
+                <a href="#/" onclick="editArticle('BestMaterialEditForm')" class="ml-auto">Edit</a>
+                <div id="BestMaterialEditForm" style="display: none;" class="border border-round p-2">
+                    <textarea id="BestMaterialEdit" style="height: 400px;" class="w-100 form-control text-justify">@ViewBag.text["BestMaterial"]</textarea>
+                    <button type="button" class="btn btn-primary ml-auto mt-2" onclick="updateText('BestMaterial')">Update</button>
+                </div>
+            }
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <h2>Budget Friendly</h2>
+            <article id="ArticleBudgetFriendly" class="text-justify">@ViewBag.text["BudgetFriendly"]</article>
+            @if (User.Identity.IsAuthenticated ? Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin) : false)
+            {
+                <a href="#/" onclick="editArticle('BudgetFriendlyEditForm')" class="ml-auto">Edit</a>
+                <div id="BudgetFriendlyEditForm" style="display: none;" class="border border-round p-2">
+                    <textarea id="BudgetFriendlyEdit" style="height: 400px;" class="w-100 form-control text-justify">@ViewBag.text["BudgetFriendly"]</textarea>
+                    <button type="button" class="btn btn-primary ml-auto mt-2" onclick="updateText('BudgetFriendly')">Update</button>
+                </div>
+            }
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <h2>Vast Collection</h2>
+            <article id="ArticleVastCollection" class="text-justify">@ViewBag.text["VastCollection"]</article>
+            @if (User.Identity.IsAuthenticated ? Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin) : false)
+            {
+                <a href="#/" onclick="editArticle('VastCollectionEditForm')" class="ml-auto">Edit</a>
+                <div id="VastCollectionEditForm" style="display: none;" class="border border-round p-2">
+                    <textarea id="VastCollectionEdit" style="height: 400px;" class="w-100 form-control text-justify">@ViewBag.text["VastCollection"]</textarea>
+                    <button type="button" class="btn btn-primary ml-auto mt-2" onclick="updateText('VastCollection')">Update</button>
+                </div>
+            }
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <h2>Latest Design</h2>
+            <article id="ArticleLatestDesign" class="text-justify">@ViewBag.text["LatestDesign"]</article>
+            @if (User.Identity.IsAuthenticated ? Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin) : false)
+            {
+                <a href="#/" onclick="editArticle('LatestDesignEditForm')" class="ml-auto">Edit</a>
+                <div id="LatestDesignEditForm" style="display: none;" class="border border-round p-2">
+                    <textarea id="LatestDesignEdit" style="height: 400px;" class="w-100 form-control text-justify">@ViewBag.text["LatestDesign"]</textarea>
+                    <button type="button" class="btn btn-primary ml-auto mt-2" onclick="updateText('LatestDesign')">Update</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function editArticle(article) {
+            $(`#${article}`).slideToggle();
+        }
+        function updateText(article) {
+            const text = $(`#${article.replace(/\s/g, '')}Edit`).val();
+            $.ajax({
+                url: '@Url.Action("Edit")',
+                method: "POST",
+                data: {
+                    Article: article,
+                    Text: text
+                },
+                success: () => {
+                    $(`#Article${article.replace(/\s/g, '')}`).html(text);
+                    showSuccessMessage("Updated Successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request Failed!");
+                }
+            });
+        }
+    </script>
+}

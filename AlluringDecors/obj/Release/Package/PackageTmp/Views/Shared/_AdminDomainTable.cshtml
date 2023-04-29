@@ -1,0 +1,18 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<AlluringDecors.Models.DomainModel>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            <input class="form-control" id="DomainName_@item.Id" type="text" value="@item.Name" />
+        </td>
+        <td>
+            <button class="btn btn-primary rounded w-100" type="button" onclick="updateDomain(@item.Id)">Update</button>
+            <button class="btn btn-danger rounded w-100 my-1" type="button" onclick="deleteDomain(@item.Id)">Delete</button>
+            @Html.ActionLink("Services", "Services", new { domain = item.Name }, new { @class = "btn btn-secondary w-100" })
+        </td>
+    </tr>
+}

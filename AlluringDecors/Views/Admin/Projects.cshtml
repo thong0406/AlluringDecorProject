@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "Projects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="border rounded m-2 p-2">
+        <h2>Create a Project</h2>
+        <hr />
+        <label for="prjName">Name</label>
+        <input type="text" class="form-control" id="prjName" />
+        <label for="prjDescription">Description</label>
+        <textarea class="form-control" id="prjDescription"></textarea>
+        <label for="prjImage">Image</label>
+        <input type="file" accept="image/*" class="form-control" id="prjImage" />
+        <label for="prjStatus">Status</label>
+        <select id="prjStatus" class="form-control">
+            <option value="On-Going" selected>On-Going</option>
+            <option value="Up-Coming">Up-Coming</option>
+            <option value="Accomplished">Accomplished</option>
+        </select>
+        <button type="button" class="btn btn-primary mt-2 ml-auto" onclick="createProject()">Create</button>
+    </div>
+    <h2>Projects</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="max-width: 30%">Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="ProjectsTableBody"></tbody>
+        <tfoot>
+            <tr>
+                <th style="max-width: 30%">Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+@section scripts {
+    <script>
+        function loadTable() {
+            $.ajax({
+                url: '@Url.Action("LoadProjectsTable")',
+                dataType: "html",
+                method: "GET",
+                success: (html) => {
+                    $("#ProjectsTableBody").html(html);
+                },
+                error: () => {
+                    showErrorMessage("Request Failed! Please refresh the page!");
+                }
+            });
+        }
+        function deleteProject(id) {
+            $.ajax({
+                url: '@Url.Action("DeleteProject")/' + id,
+                method: "POST",
+                success: () => {
+                    showSuccessMessage("Deleted Successfully!");
+                    loadTable();
+                },
+                error: (err) => {
+                    showErrorMessage("Request Failed!");
+                }
+            });
+        }
+        function updateProject(id) {
+            const fileElm = $(`#prjImage_${id}`)[0];
+            if (window.FormData !== undefined || !fileElm.files) {
+                const file = fileElm.files[0];
+                const fileData = new FormData();
+                const name = $(`#prjName_${id}`).val();
+                const description = $(`#prjDescription_${id}`).val();
+                const status = $(`#prjStatus_${id}`).children(":selected").val();
+                if (file != undefined) fileData.append(file.name, file);
+                fileData.append("Description", description);
+                fileData.append("Name", name);
+                fileData.append("Status", status);
+                $.ajax({
+                    url: '@Url.Action("UpdateProject")/' + id,
+                    method: "POST",
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    success: () => {
+                        showSuccessMessage("Updated Successfully!");
+                        loadTable();
+                    },
+                    error: (err) => {
+                        showErrorMessage("Request Failed!");
+                    }
+                });
+            }
+            else showErrorMessage("Your browser does not support file upload!");
+        }
+        function createProject() {
+            const fileElm = $(`#prjImage`)[0];
+            if (window.FormData !== undefined || !fileElm.files) {
+                const file = fileElm.files[0];
+                if (!file) showErrorMessage("Please select an image!");
+                else {
+                    const fileData = new FormData();
+                    const name = $(`#prjName`).val();
+                    const description = $(`#prjDescription`).val();
+                    const status = $(`#prjStatus`).children(":selected").val();
+                    fileData.append(file.name, file);
+                    fileData.append("Description", description);
+                    fileData.append("Name", name);
+                    fileData.append("Status", status);
+                    $.ajax({
+                        url: '@Url.Action("AddProject")',
+                        method: "POST",
+                        data: fileData,
+                        contentType: false,
+                        processData: false,
+                        success: () => {
+                            showSuccessMessage("Added Successfully!");
+                            loadTable();
+                        },
+                        error: (err) => {
+                            showErrorMessage("Request Failed!");
+                        }
+                    });
+                }
+            }
+            else showErrorMessage("Your browser does not support file upload!");
+        }
+        loadTable();
+    </script>
+}

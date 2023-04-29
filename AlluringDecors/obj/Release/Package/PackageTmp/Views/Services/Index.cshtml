@@ -1,0 +1,67 @@
+﻿@using AlluringDecors.Models;
+@model UserModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h2>Services</h2>
+    <hr />
+    <div id="ServiceDomainTable">
+
+    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="modal fade" id="serviceModal" tabindex="-1" role="dialog">
+            
+        </div>
+    }
+</div>
+
+@section scripts {
+    <script>
+        function setModelServiceDomainId(id, name) {
+            if (isEmpty($("#serviceModal"))) {
+                $.ajax({
+                    url: '@Url.Action("LoadServiceForm")',
+                    method: "GET",
+                    dataType: "html",
+                    success: (html) => {
+                        $("#serviceModal").html(html);
+                        $("#ServiceDomainId").val(id);
+                        $("#ModalTitle").html(name);
+                        $("#serviceModal").modal('toggle');
+                    },
+                    error: () => {
+                        showErrorMessage("Request Failed!");
+                    }
+                });
+            }
+            else {
+                $("#serviceModal").modal('toggle');
+                $("#ServiceDomainId").val(id);
+                $("#ModalTitle").html(name);
+            }
+        }
+        function loadTable() {
+            $.ajax({
+                url: '@Url.Action("LoadServiceDomainTable")',
+                dataType: "html",
+                method: "GET",
+                success: (html) => {
+                    $("#ServiceDomainTable").html(html);
+                },
+                error: () => {
+                    showErrorMessage("Request Failed! Please Refresh!");
+                }
+            });
+        }
+
+        function isEmpty(el) {
+            return !$.trim(el.html())
+        }
+        loadTable();
+    </script>
+}

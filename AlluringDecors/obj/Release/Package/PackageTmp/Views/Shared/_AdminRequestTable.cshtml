@@ -1,0 +1,63 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<AlluringDecors.Models.ServiceRequestModel>
+@{
+    ViewBag.Title = "Services";
+}
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceDomain.Domain.Name) - @Html.DisplayFor(modelItem => item.ServiceDomain.Service.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Receiver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateSent)
+        </td>
+        <td>
+            <select id="serviceStatus_@item.Id" onchange="updateRequest(@item.Id)">
+                <option value="Request Received" @Html.Raw((item.Status == "Request Received") ? "selected" : "")>Request Received</option>
+                <option value="Rejected" @Html.Raw((item.Status == "Rejected") ? "selected" : "")>Rejected</option>
+                <option value="Accepted" @Html.Raw((item.Status == "Accepted") ? "selected" : "")>Accepted</option>
+                <option value="Payment Received" @Html.Raw((item.Status == "Payment Received") ? "selected" : "")>Payment Received</option>
+                <option value="Service Began" @Html.Raw((item.Status == "Service Began") ? "selected" : "")>Service Began</option>
+                <option value="Service Completed" @Html.Raw((item.Status == "Service Completed") ? "selected" : "")>Service Completed</option>
+            </select>
+        </td>
+        <td style="width: 20%;">
+            @if (item.Bill.Id == -1)
+            {
+                <i class="w-100 text-center text-danger">N/A</i><br />
+                <label>Price</label>
+                <input type="number" class="form-control" id="NonBillPrice_@item.Id">
+                <label>Note</label>
+                <textarea class="form-control mb-2" id="NonBillNote_@item.Id"></textarea>
+                <button type="button" class="btn btn-primary w-100" onclick="createBill(@item.Id)">Create</button>
+            }
+            else
+            {
+                <i class="w-100 text-center text-secondary">Already Sent</i><br />
+                <label>Price</label>
+                <input type="number" class="form-control" id="BillPrice_@item.Bill.Id" value="@item.Bill.Price">
+                <label>Note</label>
+                <textarea class="form-control mb-2" id="BillNote_@item.Bill.Id">@item.Bill.Note</textarea>
+                <button type="button" class="btn btn-primary w-100 rounded" onclick="updateBill(@item.Bill.Id)">Update</button>
+                <button type="button" class="btn btn-danger w-100 rounded" onclick="deleteBill(@item.Bill.Id)">Delete</button>
+            }
+        </td>
+    </tr>
+}

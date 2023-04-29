@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlluringDecorModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="bill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceRequestId" Type="int" Nullable="false" />
+    <Property Name="Price" Type="double" Nullable="false" />
+    <Property Name="Note" Type="text" />
+    <Property Name="DateSent" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="domain">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="feedback">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Comment" Type="text" Nullable="false" />
+    <Property Name="DateSent" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Description" Type="text" Nullable="false" />
+    <Property Name="ImagePath" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Description" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="service_domain">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="DomainId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="service_example">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ImagePath" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="service_request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ServiceDomainId" Type="int" Nullable="false" />
+    <Property Name="Receiver" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Contact" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="dateSent" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+    <Property Name="Address" Type="varchar" MaxLength="255" />
+    <Property Name="Phonenumber" Type="varchar" MaxLength="255" />
+    <Property Name="Email" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="user_role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="roleId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="bill_ibfk_2">
+    <End Role="service_request" Type="Self.service_request" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="bill" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="service_request">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bill">
+        <PropertyRef Name="ServiceRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="feedback_ibfk_1">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="feedback">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="service_domain_ibfk_1">
+    <End Role="service" Type="Self.service" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="service_domain" Type="Self.service_domain" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="service_domain">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="service_domain_ibfk_2">
+    <End Role="domain" Type="Self.domain" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="service_domain" Type="Self.service_domain" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="domain">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="service_domain">
+        <PropertyRef Name="DomainId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="service_example_ibfk_1">
+    <End Role="service" Type="Self.service" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="service_example" Type="Self.service_example" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="service_example">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="service_request_ibfk_1">
+    <End Role="user" Type="Self.user" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="service_request" Type="Self.service_request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="service_request">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="service_request_ibfk_2">
+    <End Role="service_domain" Type="Self.service_domain" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="service_request" Type="Self.service_request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="service_domain">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="service_request">
+        <PropertyRef Name="ServiceDomainId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="user_role_ibfk_1">
+    <End Role="role" Type="Self.role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="user_role" Type="Self.user_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user_role">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="user_role_ibfk_2">
+    <End Role="user" Type="Self.user" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="user_role" Type="Self.user_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="user_role">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AlluringDecorModelStoreContainer">
+    <EntitySet Name="bill" EntityType="Self.bill" Schema="alluring_decor_db" store:Type="Tables" />
+    <EntitySet Name="domain" EntityType="Self.domain" Schema="alluring_decor_db" store:Type="Tables" />
+    <EntitySet Name="feedback" EntityType="Self.feedback" Schema="alluring_decor_db" store:Type="Tables" />
+    <EntitySet Name="project" EntityType="Self.project" Schema="alluring_decor_db" store:Type="Tables" />
+    <EntitySet Name="role" EntityType="Self.role" Schema="alluring_decor_db" store:Type="Tables" />
+    <EntitySet Name="service" EntityType="Self.service" Schema="alluring_decor_db" store:Type="Tables" />
+    <EntitySet Name="service_domain" EntityType="Self.service_domain" Schema="alluring_decor_db" store:Type="Tables" />
+    <EntitySet Name="service_example" EntityType="Self.service_example" Schema="alluring_decor_db" store:Type="Tables" />
+    <EntitySet Name="service_request" EntityType="Self.service_request" Schema="alluring_decor_db" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="alluring_decor_db" store:Type="Tables" />
+    <EntitySet Name="user_role" EntityType="Self.user_role" Schema="alluring_decor_db" store:Type="Tables" />
+    <AssociationSet Name="bill_ibfk_2" Association="Self.bill_ibfk_2">
+      <End Role="service_request" EntitySet="service_request" />
+      <End Role="bill" EntitySet="bill" />
+    </AssociationSet>
+    <AssociationSet Name="feedback_ibfk_1" Association="Self.feedback_ibfk_1">
+      <End Role="user" EntitySet="user" />
+      <End Role="feedback" EntitySet="feedback" />
+    </AssociationSet>
+    <AssociationSet Name="service_domain_ibfk_1" Association="Self.service_domain_ibfk_1">
+      <End Role="service" EntitySet="service" />
+      <End Role="service_domain" EntitySet="service_domain" />
+    </AssociationSet>
+    <AssociationSet Name="service_domain_ibfk_2" Association="Self.service_domain_ibfk_2">
+      <End Role="domain" EntitySet="domain" />
+      <End Role="service_domain" EntitySet="service_domain" />
+    </AssociationSet>
+    <AssociationSet Name="service_example_ibfk_1" Association="Self.service_example_ibfk_1">
+      <End Role="service" EntitySet="service" />
+      <End Role="service_example" EntitySet="service_example" />
+    </AssociationSet>
+    <AssociationSet Name="service_request_ibfk_1" Association="Self.service_request_ibfk_1">
+      <End Role="user" EntitySet="user" />
+      <End Role="service_request" EntitySet="service_request" />
+    </AssociationSet>
+    <AssociationSet Name="service_request_ibfk_2" Association="Self.service_request_ibfk_2">
+      <End Role="service_domain" EntitySet="service_domain" />
+      <End Role="service_request" EntitySet="service_request" />
+    </AssociationSet>
+    <AssociationSet Name="user_role_ibfk_1" Association="Self.user_role_ibfk_1">
+      <End Role="role" EntitySet="role" />
+      <End Role="user_role" EntitySet="user_role" />
+    </AssociationSet>
+    <AssociationSet Name="user_role_ibfk_2" Association="Self.user_role_ibfk_2">
+      <End Role="user" EntitySet="user" />
+      <End Role="user_role" EntitySet="user_role" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Bills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Your Bills</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Request Id</th>
+                <th>Domain</th>
+                <th>Service</th>
+                <th>Receiver</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Price</th>
+                <th>Note</th>
+                <th>Date Sent</th>
+            </tr>
+        </thead>
+        <tbody id="billTableBody"></tbody>
+        <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Request Id</th>
+                <th>Domain</th>
+                <th>Service</th>
+                <th>Receiver</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Price</th>
+                <th>Note</th>
+                <th>Date Sent</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+@section scripts {
+    <script>
+        function loadBills()
+        {
+            $.ajax({
+                url: '@Url.Action("LoadBillTable", "Client")',
+                dataType: "html",
+                method: "GET",
+                success: (html) => {
+                    $("#billTableBody").html(html);
+                },
+                error: () => {
+                    showErrorMessage("Request load failure!");
+                }
+            });
+        }
+        loadBills();
+    </script>
+}

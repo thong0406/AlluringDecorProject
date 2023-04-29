@@ -1,0 +1,52 @@
+﻿@using AlluringDecors.Models;
+@model ServiceRequestModel
+@{
+    ViewBag.Title = "Services";
+}
+
+<div class="modal-body">
+    <div class="form-group">
+        <label>Domain</label>
+        <select class="custom-select" onchange="resetServices()" name="DomainId" id="DomainSelect">
+            @foreach (DomainModel dmn in ViewBag.Domains)
+            {
+                string dmnId = "dmn_" + dmn.Id;
+                <option class="domainOption" id="@dmnId">@dmn.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Services</label>
+        <select class="custom-select" name="ServiceId" id="ServiceSelect">
+            @foreach (ServiceModel srv in ViewBag.Services)
+            {
+                string srvId = "srv_" + srv.Id;
+                <option class="serviceOption d-none" id="@srvId">@srv.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Receiver</label>
+        @Html.TextBoxFor(m => m.Receiver, new { @class = "form-control", @id = "Receiver" })
+        @Html.ValidationMessageFor(m => m.Receiver)
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @id = "Address" })
+        @Html.ValidationMessageFor(m => m.Address)
+    </div>
+    <div class="form-group">
+        <label>Contact</label>
+        @Html.TextBoxFor(m => m.Contact, new { @class = "form-control", @id = "Contact" })
+        @Html.ValidationMessageFor(m => m.Contact)
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @id = "Email" })
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" onclick="updateRequest(@Model.Id)">Update</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+</div>

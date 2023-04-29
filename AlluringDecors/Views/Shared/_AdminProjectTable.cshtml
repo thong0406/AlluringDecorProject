@@ -1,0 +1,25 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<ProjectModel>
+
+@foreach (ProjectModel prj in Model)
+{
+    <tr>
+        <td style="max-width: 40%">
+            <img style="width: 100%" src="~/Images/@prj.ImagePath" />
+            <input class="form-control" type="file" accept="images/*" id="prjImage_@prj.Id" />
+        </td>
+        <td><input class="form-control" id="prjName_@prj.Id" value="@prj.Name" type="text" /></td>
+        <td><textarea class="form-control" id="prjDescription_@prj.Id">@prj.Description</textarea></td>
+        <td>
+            <select id="prjStatus_@prj.Id" class="form-control">
+                <option value="On-Going" @Html.Raw((prj.Status == "On-Going") ? "selected" : "")>On-Going</option>
+                <option value="Up-Coming" @Html.Raw((prj.Status == "Up-Coming") ? "selected" : "")>Up-Coming</option>
+                <option value="Accomplished" @Html.Raw((prj.Status == "Accomplished") ? "selected" : "")>Accomplished</option>
+            </select>
+        </td>
+        <td>
+            <button class="btn btn-primary" type="button" onclick="updateProject(@prj.Id)">Update</button>
+            <button class="btn btn-danger mt-2" type="button" onclick="deleteProject(@prj.Id)">Delete</button>
+        </td>
+    </tr>
+}

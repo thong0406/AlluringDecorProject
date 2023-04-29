@@ -1,0 +1,98 @@
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\ApplicationInsights.config
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\csc.exe
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\System.Collections.Immutable.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\vbc.exe
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\VBCSCompiler.exe
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\roslyn\VBCSCompiler.exe.config
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\AlluringDecors.dll.config
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\AlluringDecors.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\AlluringDecors.pdb
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.AI.Agent.Intercept.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.AI.DependencyCollector.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.AI.Web.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.AI.WindowsServer.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.ApplicationInsights.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.Web.Infrastructure.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Helpers.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Mvc.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Razor.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.Deployment.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.Razor.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.AI.DependencyCollector.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.AI.Web.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.AI.WindowsServer.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.ApplicationInsights.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Razor.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.Deployment.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.Razor.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Helpers.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\System.Web.Mvc.xml
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\obj\Debug\AlluringDecors.csprojResolveAssemblyReference.cache
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\obj\Debug\AlluringDecors.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\obj\Debug\AlluringDecors.pdb
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Newtonsoft.Json.dll
+c:\users\abc\documents\visual studio 2015\Projects\EAD_Test_LMThong\AlluringDecors\AlluringDecors\bin\Newtonsoft.Json.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\ApplicationInsights.config
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\csc.exe
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\System.Collections.Immutable.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\System.Reflection.Metadata.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\vbc.exe
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\VBCSCompiler.exe
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\roslyn\VBCSCompiler.exe.config
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\AlluringDecors.dll.config
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\AlluringDecors.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\AlluringDecors.pdb
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.AI.DependencyCollector.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.AI.Web.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.AI.WindowsServer.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.ApplicationInsights.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.Web.Infrastructure.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Newtonsoft.Json.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Helpers.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Mvc.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Razor.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.Deployment.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.Razor.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.AI.DependencyCollector.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.AI.Web.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.AI.WindowsServer.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.ApplicationInsights.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\Newtonsoft.Json.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Razor.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.Deployment.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Webpages.Razor.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Helpers.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\System.Web.Mvc.xml
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\obj\Debug\AlluringDecors.csprojResolveAssemblyReference.cache
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\obj\Debug\AlluringDecors.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\obj\Debug\AlluringDecors.pdb
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\EntityFramework.dll
+D:\Personal_Items\Coding\.NET\AlluringDecors\AlluringDecors\bin\EntityFramework.xml

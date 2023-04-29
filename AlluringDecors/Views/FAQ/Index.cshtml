@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>FAQ - Frequently Asked Questions</h2>
+    <hr />
+    <div class="row" id="PartialLoad">
+        
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function updateText(question) {
+            const text = $(`#qstEdit_${question}`).val();
+            const article = $(`#qstTitle_${question}`).html();
+            $.ajax({
+                url: '@Url.Action("Edit")',
+                method: "POST",
+                data: {
+                    Article: article,
+                    Text: text
+                },
+                success: () => {
+                    $(`#qstArticle_${question}`).html(text);
+                    showSuccessMessage("Updated Successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request Failed!");
+                }
+            });
+        }
+        function deleteText(question) {
+            const article = $(`#qstTitle_${question}`).html();
+            $.ajax({
+                url: '@Url.Action("Delete")',
+                method: "POST",
+                data: {
+                    Article: article
+                },
+                success: () => {
+                    $(`#qstBlock_${question}`).remove();
+                    $(`#qstLink_${question}`).remove();
+                    showSuccessMessage("Deleted Successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request Failed!");
+                }
+            });
+        }
+        function addText() {
+            const text = $(`#FormAnswer`).val();
+            const article = $(`#FormQuestion`).val();
+            $.ajax({
+                url: '@Url.Action("Add")',
+                method: "POST",
+                data: {
+                    Article: article,
+                    Text: text
+                },
+                success: () => {
+                    loadQuestions();
+                    showSuccessMessage("Added Successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request Failed!");
+                }
+            });
+        }
+        function loadQuestions() {
+            $.ajax({
+                url: '@Url.Action("LoadPartial")',
+                method: "GET",
+                dataType: "html",
+                success: (html) => {
+                    $("#PartialLoad").html(html);
+                },
+                error: () => {
+                    showErrorMessage("Request Failed! Please refresh the page!");
+                }
+            });
+        }
+        loadQuestions();
+    </script>
+}

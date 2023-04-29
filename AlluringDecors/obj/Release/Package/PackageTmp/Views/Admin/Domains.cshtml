@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Domains";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="p-3 border rounded m-3">
+        <h2>Create Domain</h2>
+        <hr />
+        <div class="form-group">
+            <label for="CreateDomainName">Name</label>
+            <input type="text" class="form-control" id="CreateDomainName">
+        </div>
+        <button type="button" onclick="createDomain()" class="btn btn-primary">Create</button>
+    </div>
+    <h2>Domains</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="domainTableBody" onload="loadDomains()"></tbody>
+        <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+@section scripts {
+    <script>
+        function loadDomains() {
+            $.ajax({
+                url: '@Url.Action("LoadDomainTable", "Admin")',
+                dataType: "html",
+                method: "POST",
+                success: (html) => {
+                    $("#domainTableBody").html(html);
+                },
+                error: () => {
+                    showErrorMessage("Request load failure!");
+                }
+            });
+        }
+        function updateDomain(id)
+        {
+            const name = $(`#DomainName_${id}`).val();
+            if (name.trim().length != 0)
+            {
+                $.ajax({
+                    url: '@Url.Action("UpdateDomain", "Admin")/' + id,
+                    dataType: "html",
+                    method: "POST",
+                    data: { Name: name },
+                    success: () => {
+                        loadDomains();
+                        showSuccessMessage("Updated successfully!");
+                    },
+                    error: () => {
+                        showErrorMessage("Request failure!");
+                    }
+                });
+            }
+            else
+            {
+                $.ajax({
+                    url: '@Url.Action("LoadDomainTable", "Admin")',
+                    dataType: "html",
+                    method: "POST",
+                    success: (html) => {
+                        $("#domainTableBody").html(html);
+                        $(`#DomainName_${id}`).css("border-color", "red");
+                        showErrorMessage("Please fill in the name!");
+                    },
+                    error: () => {
+                        showErrorMessage("Request failure!");
+                    }
+                });
+            }
+        }
+        function createDomain() {
+            const name = $("#CreateDomainName").val();
+            $.ajax({
+                url: '@Url.Action("CreateDomain", "Admin")',
+                dataType: "html",
+                method: "POST",
+                data: { Name: name },
+                success: () => {
+                    loadDomains();
+                    showSuccessMessage("Added successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request failure!");
+                }
+            });
+        }
+        function deleteDomain(id)
+        {
+            $.ajax({
+                url: '@Url.Action("DeleteDomain", "Admin")/' + id,
+                dataType: "html",
+                method: "POST",
+                success: () => {
+                    loadDomains();
+                    showSuccessMessage("Deleted successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request failure!");
+                }
+            });
+        }
+        loadDomains();
+    </script>
+}

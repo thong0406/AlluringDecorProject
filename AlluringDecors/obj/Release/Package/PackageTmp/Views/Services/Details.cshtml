@@ -1,0 +1,186 @@
+﻿@using AlluringDecors.Models;
+@model AlluringDecors.Models.ServiceModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+            
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-8">
+            <h2>@Model.Name</h2>
+            <hr />
+            @if (User.Identity.IsAuthenticated) {
+                if (Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin))
+                {
+                    <textarea id="ServiceDescription" class="form-control text-justify" style="height: 300px;">@Model.Description</textarea>
+                    <button type="button" class="btn btn-primary rounded ml-auto mt-2" onclick="updateService(@Model.Id)">Update</button>
+                }
+            }
+            else
+            {
+                <p class="text-justify">@Model.Description</p>
+                <label for="SignUpDomain"></label>
+                <select class="form-control" id="SignUpDomain">
+                    @foreach (DomainModel dmn in ViewBag.Domains)
+                    {
+                        <option id="dmn_@dmn.Id" value="dmn_@dmn.Id" class="dmnOption" @if (ViewBag.DomainId == dmn.Id) { Html.Raw("selected"); }>@dmn.Name</option>
+                    }
+                </select>
+                <button type="button" onclick="setModal()" class="ml-auto btn btn-primary mt-2">Sign up to Service</button>
+            }
+        </div>
+    </div>
+    <hr />
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin))
+        {
+            <div class="border rounded m-2 p-2">
+                <h2>Create an Example</h2>
+                <label for="CreateExampleFile">Image</label>
+                <input type="file" class="form-control" id="CreateExampleFile" accept="image/*" />
+                <label for="CreateExampleDescription">Short Description</label>
+                <input type="text" class="form-control" id="CreateExampleDescription" />
+                <button class="btn btn-primary rounded mt-2" onclick="createExample(@Model.Id)">Create</button>
+            </div>
+            <hr />
+        }
+    }
+    <h2>Example of Service</h2>
+    <div id="ServiceExampleList" class="row justify-content-center">
+        
+    </div>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="modal fade" id="serviceModal" tabindex="-1" role="dialog"></div>
+}
+
+@section scripts {
+    <script>
+        function updateService(id) {
+            const description = $("#ServiceDescription").val();
+            $.ajax({
+                url: '@Url.Action("UpdateService")/' + @Model.Id,
+                method: "POST",
+                data: { Description: description },
+                success: () => {
+                    showSuccessMessage("Updated Successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request Failed! Please Refresh Page!");
+                }
+            });
+        }
+        function updateExample(id) {
+            const description = $(`#srvex_${id}`).val();
+            $.ajax({
+                url: '@Url.Action("UpdateExample")/' + id,
+                method: "POST",
+                data: { Description: description },
+                success: () => {
+                    showSuccessMessage("Updated Successfully!");
+                    loadExamples();
+                },
+                error: () => {
+                    showErrorMessage("Request Failed! Please Refresh Page!");
+                }
+            });
+        }
+        function deleteExample(id) {
+            $.ajax({
+                url: '@Url.Action("DeleteExample")/' + id,
+                method: "POST",
+                success: () => {
+                    showSuccessMessage("Deleted Successfully!");
+                    loadExamples();
+                },
+                error: () => {
+                    loadExamples();
+                    showErrorMessage("Request Failed! Please Refresh Page!");
+                }
+            });
+        }
+        function loadExamples() {
+            $.ajax({
+                url: '@Url.Action("LoadExamples")/' + @Model.Id,
+                method: "GET",
+                dataType: "html",
+                success: (html) => {
+                    $("#ServiceExampleList").html(html);
+                },
+                error: () => {
+                    showErrorMessage("Request Failed! Please Refresh Page!");
+                }
+            });
+        }
+        function createExample(id) {
+            const fileElm = $("#CreateExampleFile")[0];
+            if (window.FormData !== undefined || !fileElm.files) {
+                const file = fileElm.files[0];
+                if (!file) showErrorMessage("Please select an image!");
+                else {
+                    const fileData = new FormData();
+                    const description = $("#CreateExampleDescription").val();
+                    fileData.append(file.name, file);
+                    fileData.append("Description", description);
+                    $.ajax({
+                        url: '@Url.Action("CreateExample")?serviceId=' + id,
+                        method: "POST",
+                        data: fileData,
+                        contentType: false,
+                        processData: false,
+                        success: () => {
+                            showSuccessMessage("Added Successfully!");
+                            loadExamples();
+                        },
+                        error: (err) => {
+                            showErrorMessage("Request Failed! Please Refresh Page!");
+                        }
+                    });
+                }
+            }
+            else showErrorMessage("Your browser does not support file upload!");
+        }
+        function setModal() {
+            const name = `${$(".dmnOption:selected").html()} - @Model.Name`;
+            const domainId = $(".dmnOption:selected").val();
+            if (isEmpty($("#serviceModal"))) {
+                $.ajax({
+                    url: '@Url.Action("LoadServiceForm")',
+                    method: "GET",
+                    dataType: "html",
+                    success: (html) => {
+                        $("#serviceModal").html(html);
+                        $("#ServiceId").val(@Model.Id);
+                        $("#DomainId").val(domainId.substring(domainId.indexOf("_") + 1));
+                        $("#ServiceDomainId").val("-1");
+                        $("#ModalTitle").html(name);
+                        $("#serviceModal").modal('toggle');
+                    },
+                    error: () => {
+                        showErrorMessage("Request Failed!");
+                    }
+                });
+            }
+            else {
+                $("#serviceModal").modal('toggle');
+                $("#ServiceId").val(@Model.Id);
+                $("#DomainId").val(domainId.substring(domainId.indexOf("_") + 1));
+                $("#ServiceDomainId").val("-1");
+                $("#ModalTitle").html(name);
+            }
+        }
+
+        function isEmpty(el) {
+            return !$.trim(el.html())
+        }
+        loadExamples();
+    </script>    
+}

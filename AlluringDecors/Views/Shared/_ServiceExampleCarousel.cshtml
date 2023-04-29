@@ -1,0 +1,35 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<ServiceExampleModel>
+
+@foreach (ServiceExampleModel srvex in Model)
+{
+    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 p-2">
+        <div class="p-0 card">
+            <img class="card-img-top" src="~/Images/@srvex.ImagePath" alt="Card image cap">
+            <div class="card-body">
+                <div class="text-center w-100">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin))
+                        {
+                            <input class="form-control" id="srvex_@srvex.Id" type="text" value="@srvex.Name" />
+                        }
+                    }
+                    else
+                    {
+                        <i class="text-secondary">@srvex.Name</i>
+                    }
+                </div>
+                <hr />
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin))
+                    {
+                        <button class="btn btn-primary rounded mb-2 w-100" onclick="updateExample(@srvex.Id)">Update</button>
+                        <button class="btn btn-danger rounded mb-2 w-100" onclick="deleteExample(@srvex.Id)">Delete</button>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}

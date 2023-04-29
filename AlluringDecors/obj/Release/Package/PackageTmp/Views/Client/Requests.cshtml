@@ -1,0 +1,142 @@
+﻿@using AlluringDecors.Models;
+@{
+    ViewBag.Title = "Services";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Your Requests</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Domain</th>
+                <th>Service</th>
+                <th>Receiver</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Date Sent</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="requestTableBody">
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Domain</th>
+                <th>Service</th>
+                <th>Receiver</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Date Sent</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="ModalContent">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        const dmnsrvs = @Html.Raw(ViewBag.DomainServices);
+        function cancelRequest(id)
+        {
+            $.ajax({
+                url: '@Url.Action("CancelRequest", "Client")/' + id,
+                method: "POST",
+                success: () => {
+                    showSuccessMessage("Canceled successfully!");
+                    loadRequests();
+                },
+                error: () => {
+                    showErrorMessage("Request failed!");
+                }
+            });
+        }
+        function updateRequest(id)
+        {
+            $.ajax({
+                url: '@Url.Action("UpdateRequest", "Client")/' + id,
+                method: "POST",
+                data: {
+                    "DomainId"  : $(".domainOption:selected").attr("id"),
+                    "ServiceId" : $(".serviceOption:selected").attr("id"),
+                    "Receiver"  : $("#Receiver").val(),
+                    "Address"   : $("#Address").val(),
+                    "Contact"   : $("#Contact").val(),
+                    "Email"     : $("#Email").val()
+                },
+                success: () => {
+                    showSuccessMessage("Updated successfully!");
+                    loadRequests();
+                    $('#detailsModal').modal('toggle');
+                },
+                error: () => {
+                    showErrorMessage("Request failed!");
+                }
+            });
+        }
+        function loadRequests()
+        {
+            $.ajax({
+                url: '@Url.Action("LoadRequestTable", "Client")',
+                dataType: "html",
+                method: "POST",
+                success: (html) => {
+                    $("#requestTableBody").html(html);
+                },
+                error: () => {
+                    showErrorMessage("Request load failure!");
+                }
+            });
+        }
+        function loadModal(id)
+        {
+            $.ajax({
+                url: '@Url.Action("LoadRequestModal", "Client")/' + id,
+                dataType: "html",
+                method: "POST",
+                success: (data) => {
+                    $("#ModalContent").html(data);
+                    $('#detailsModal').modal('toggle');
+                    resetServices();
+                },
+                error: () => {
+                    $("#detailsModal").hide();
+                    showErrorMessage("Request failed!");
+                }
+            });
+        }
+        function resetServices()
+        {
+            const dmnId = $("#DomainSelect").find(":selected").attr('id');
+            const hideSrvs = dmnsrvs[dmnId];
+            $(".serviceOption").removeClass("d-none");
+            $(".serviceOption").removeAttr("selected");
+            for (var srvId of hideSrvs)
+            {
+                $(`#${srvId}`).addClass("d-none");
+            }
+            $(".serviceOption").not(".d-none").first().attr("selected", "selected");
+        }
+        loadRequests();
+    </script>
+}

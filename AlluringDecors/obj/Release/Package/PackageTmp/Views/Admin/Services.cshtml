@@ -1,0 +1,297 @@
+﻿@using AlluringDecors.Models;
+@{
+    ViewBag.Title = "Services";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="active nav-link" id="ServiceTypeTableButton" data-toggle="tab" href="#serviceTypeTab" onclick="loadTable(false, 'BY_TYPE');">Service Types</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="ByServiceTableButton" data-toggle="tab" href="#byServiceTab" onclick="loadTable(false, 'BY_SERVICE')">By Service Type</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="ByDomainTableButton" data-toggle="tab" href="#byDomainTab" onclick="loadTable(false, 'BY_DOMAIN')">By Domain</a>
+        </li>
+    </ul>
+    <div class="p-3 border rounded m-3" id="ServiceFormDomain">
+        
+    </div>
+    <div class="p-3 border rounded m-3" id="ServiceFormType">
+
+    </div>
+    <div id="ServicesTable"></div>
+    <div class="tab-content">
+        <div id="serviceTypeTab" class="tab-pane active">
+            <h2>Service Types</h2>
+
+            <!-- Service Types -->
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="ServiceTypeTableBody"></tbody>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div id="byServiceTab" class="tab-pane">
+            <h2>Services by Type</h2>
+
+            <!-- Services by Service Types -->
+
+            <label for="ServiceTypeList">Service Type:</label>
+            <select id="ServiceTypeList" class="form-control mb-2" onchange="loadTable(true, 'BY_SERVICE')">
+                <option value="srv_-1" selected>All</option>
+                @foreach (ServiceModel srv in ViewBag.Services)
+                {
+                    <option value="srv_@srv.Id">@srv.Name</option>
+                }
+            </select>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Domain</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="ByServiceTableBody"></tbody>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Domain</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div id="byDomainTab" class="tab-pane">
+            <h2>Services by Domain</h2>
+
+            <!-- Services by Domain -->
+
+            <label for="DomainList">Domain:</label>
+            <select id="DomainList" class="form-control mb-2" onchange="loadTable(true, 'BY_DOMAIN')">
+                @foreach (DomainModel dmn in ViewBag.Domains)
+                {
+                    <option value="dmn_@dmn.Id">@dmn.Name</option>
+                }
+            </select>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="ByDomainTableBody"></tbody>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $("#ServiceFormDomain").hide();
+        const TABLE_TYPES = {
+            BY_TYPE: ["ByType", "ServiceTypeTableBody"],
+            BY_DOMAIN: ["ByDomain?domainId=", "ByDomainTableBody"],
+            BY_SERVICE: ["ByService?serviceId=", "ByServiceTableBody"],
+        }
+        function loadTable(restart, type) {
+            var id = -1;
+            if (type == "BY_SERVICE") id = $("#ServiceTypeList").children(":selected").val();
+            if (type == "BY_DOMAIN") id = $("#DomainList").children(":selected").val();
+            const endUrl = TABLE_TYPES[type][0] + (type == "BY_DOMAIN" || type == "BY_SERVICE" ? id.substring(id.indexOf("_") + 1) : "");
+            const url = `LoadServiceTable${endUrl}`;
+            const body = $(`#${TABLE_TYPES[type][1]}`);
+            if (type == "BY_TYPE") {
+                if (!isEmpty($("#ServiceFormType"))) {
+                    $("#ServiceFormType").show();
+                    $("#ServiceFormDomain").hide();
+                }
+                $.ajax({
+                    url: '@Url.Action("LoadServiceFormType")',
+                    dataType: "html",
+                    success: (html) => {
+                        $("#ServiceFormType").html(html);
+                        $("#ServiceFormType").show();
+                    },
+                    error: () => {
+                        showErrorMessage("Request load failure!");
+                    }
+                });
+            }
+            else if (isEmpty($("#ServiceFormDomain"))) {
+                $("#ServiceFormType").hide();
+                $.ajax({
+                    url: '@Url.Action("LoadServiceForm")',
+                    dataType: "html",
+                    success: (html) => {
+                        $("#ServiceFormDomain").html(html);
+                        $("#ServiceFormDomain").show();
+                    },
+                    error: () => {
+                        showErrorMessage("Request load failure!");
+                    }
+                });
+            }
+            else {
+                $("#ServiceFormType").hide();
+                $("#ServiceFormDomain").show();
+            }
+            if (restart || isEmpty(body)) {
+                $.ajax({
+                    url: url,
+                    dataType: "html",
+                    success: (html) => {
+                        body.html(html);
+                    },
+                    error: () => {
+                        showErrorMessage("Request load failure!");
+                    }
+                });
+            }
+        }
+        function updateService(id) {
+            const name = $(`#ServiceName_${id}`).val();
+            const description = $(`#ServiceDescription_${id}`).val();
+            if (name.trim().length != 0) {
+                $.ajax({
+                    url: '@Url.Action("UpdateService", "Admin")/' + id,
+                    method: "POST",
+                    data: {
+                        Name: name,
+                        Description: description
+                    },
+                    success: () => {
+                        loadTable(true, 'BY_TYPE');
+                        showSuccessMessage("Updated successfully!");
+                    },
+                    error: () => {
+                        showErrorMessage("Request failure!");
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    url: '@Url.Action("LoadDomainTable", "Admin")',
+                    dataType: "html",
+                    method: "POST",
+                    success: (html) => {
+                        $("#domainTableBody").html(html);
+                        $(`#DomainName_${id}`).css("border-color", "red");
+                        showErrorMessage("Please fill in the name!");
+                    },
+                    error: () => {
+                        showErrorMessage("Request failure!");
+                    }
+                });
+            }
+        }
+        function createService() {
+            const name = $("#CreateServiceName").val();
+            const description = $("#CreateServiceDescription").val();
+            if (name.trim().length != 0) {
+                $.ajax({
+                    url: '@Url.Action("CreateService", "Admin")',
+                    method: "POST",
+                    data: {
+                        Name: name,
+                        Description: description
+                    },
+                    success: () => {
+                        loadTable(true, 'BY_TYPE');
+                        showSuccessMessage("Created successfully!");
+                    },
+                    error: () => {
+                        showErrorMessage("Request failure!");
+                    }
+                });
+            }
+            else {
+                $(`#CreateServiceName`).css("border-color", "red");
+                $(`#CreateServiceName`).val("");
+                showErrorMessage("Please fill in the name!");
+            }
+        }
+        function deleteService(id) {
+            $.ajax({
+                url: '@Url.Action("DeleteService", "Admin")/' + id,
+                method: "POST",
+                success: () => {
+                    loadTable(true, 'BY_TYPE');
+                    showSuccessMessage("Deleted successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request failure!");
+                }
+            });
+        }
+        function createServiceDomain() {
+            const serviceId = $("#CreateServiceService").children(":selected").val();
+            const domainId = $("#CreateServiceDomain").children(":selected").val();
+            $.ajax({
+                url: '@Url.Action("CreateServiceDomain", "Admin")',
+                method: "POST",
+                data: {
+                    ServiceId: serviceId.substring(serviceId.indexOf("_") + 1),
+                    DomainId: domainId.substring(domainId.indexOf("_") + 1)
+                },
+                success: () => {
+                    loadTable(true, 'BY_SERVICE');
+                    loadTable(true, 'BY_DOMAIN');
+                    showSuccessMessage("Created successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request failure!");
+                }
+            });
+        }
+        function deleteServiceDomain(id) {
+            $.ajax({
+                url: '@Url.Action("DeleteServiceDomain", "Admin")/' + id,
+                method: "POST",
+                success: () => {
+                    loadTable(true, 'BY_SERVICE');
+                    loadTable(true, 'BY_DOMAIN');
+                    showSuccessMessage("Deleted successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request failure!");
+                }
+            });
+        }
+        function isEmpty(el) {
+            return !$.trim(el.html())
+        }
+        loadTable(true, 'BY_TYPE');
+    </script>
+}

@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-6 col-xl-6">
+
+        </div>
+        <div class="col-md-12 col-lg-6 col-xl-6">
+            <h2>Contact Us</h2>
+            <p>Get in touch with us to know about the latest designs an get a free consultation about your place.</p>
+            <ul>
+                @if (User.Identity.IsAuthenticated ? Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin) : false)
+                {
+                    <li class="my-2"><input type="text" class="form-control" id="ContactEdit" value="@ViewBag.text["Contact"]" /><button class="btn btn-primary mt-1" onclick="updateText('Contact')">Update</button></li>
+                    <li class="my-2"><input type="text" class="form-control" id="AddressEdit" value="@ViewBag.text["Address"]" /><button class="btn btn-primary mt-1" onclick="updateText('Address')">Update</button></li>
+                    <li class="my-2"><input type="text" class="form-control" id="EmailEdit" value="@ViewBag.text["Email"]" /><button class="btn btn-primary mt-1" onclick="updateText('Email')">Update</button></li>
+                }
+                else
+                {
+                    <li>@ViewBag.text["Contact"]</li>
+                    <li>@ViewBag.text["Address"]</li>
+                    <li>@ViewBag.text["Email"]</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function editArticle(article) {
+            $(`#${article}`).slideToggle();
+        }
+        function updateText(article) {
+            const text = $(`#${article.replace(/\s/g, '')}Edit`).val();
+            $.ajax({
+                url: '@Url.Action("Edit")',
+                method: "POST",
+                data: {
+                    Article: article,
+                    Text: text
+                },
+                success: () => {
+                    $(`#Article${article.replace(/\s/g, '')}`).html(text);
+                    showSuccessMessage("Updated Successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request Failed!");
+                }
+            });
+        }
+    </script>
+}

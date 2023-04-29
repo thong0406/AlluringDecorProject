@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Requests</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Domain Service</th>
+                <th>User</th>
+                <th>Receiver</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Date Sent</th>
+                <th>Status</th>
+                <th>Bill</th>
+                <th style="width: 20%;"></th>
+            </tr>
+        </thead>
+        <tbody id="requestTableBody" onload="loadRequests()"></tbody>
+        <tfoot>
+            <tr>
+                <th>Domain-Service</th>
+                <th>User</th>
+                <th>Receiver</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Date Sent</th>
+                <th>Status</th>
+                <th>Bill</th>
+                <th style="width: 20%;"></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+@section scripts {
+    <script>
+        function loadRequests() {
+            $.ajax({
+                url: '@Url.Action("LoadRequestTable", "Admin")',
+                dataType: "html",
+                method: "POST",
+                success: (html) => {
+                    $("#requestTableBody").html(html);
+                },
+                error: () => {
+                    showErrorMessage("Request load failure!");
+                }
+            });
+        }
+        function updateRequest(id, _status) {
+            const status = _status == null ? $(`#serviceStatus_${id}`).children(":selected").val() : _status;
+            $.ajax({
+                url: '@Url.Action("UpdateRequestStatus", "Admin")/' + id,
+                method: "POST",
+                data: { Status: status },
+                success: () => {
+                    showSuccessMessage("Updated successfully!");
+                    loadRequests();
+                },
+                error: () => {
+                    showErrorMessage("Request failed!");
+                }
+            });
+        }
+        function updateBill(id) {
+            const price = $(`#BillPrice_${id}`).val();
+            const note = $(`#BillNote_${id}`).val();
+            console.log(note);
+            if (isNaN(price)) {
+                $(`#BillPrice_${id}`).val("");
+                $(`#BillPrice_${id}`).css("border-color", "red");
+                $(`#BillPrice_${id}`).attr("placeholder", "Please fill in a valid price");
+            }
+            else {
+                $.ajax({
+                    url: '@Url.Action("UpdateBill", "Admin")/' + id,
+                    method: "POST",
+                    data: { Price: price, Note: note },
+                    success: () => {
+                        showSuccessMessage("Updated successfully!");
+                        loadRequests();
+                    },
+                    error: () => {
+                        showErrorMessage("Request failed!");
+                    }
+                });
+            }
+        }
+        function createBill(id) {
+            const price = $(`#NonBillPrice_${id}`).val();
+            const note = $(`#NonBillNote_${id}`).val();
+            if (isNaN(price)) {
+                $(`#NonBillPrice_${id}`).val("");
+                $(`#NonBillPrice_${id}`).css("border-color", "red");
+                $(`#NonBillPrice_${id}`).attr("placeholder", "Please fill in a valid price");
+            }
+            else {
+                $.ajax({
+                    url: '@Url.Action("CreateBill", "Admin")/' + id,
+                    method: "POST",
+                    data: { Price: price, Note: note },
+                    success: () => {
+                        showSuccessMessage("Added successfully!");
+                        updateRequest(id, "Accepted");
+                        loadRequests();
+                    },
+                    error: () => {
+                        showErrorMessage("Request failed!");
+                    }
+                });
+            }
+        }
+        function deleteBill(id) {
+            $.ajax({
+                url: '@Url.Action("DeleteBill", "Admin")/' + id,
+                method: "POST",
+                success: () => {
+                    showSuccessMessage("Deleted successfully!");
+                    loadRequests();
+                },
+                error: () => {
+                    showErrorMessage("Request failed!");
+                }
+            });
+        }
+        loadRequests();
+    </script>
+}

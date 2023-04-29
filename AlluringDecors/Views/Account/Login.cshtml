@@ -1,0 +1,79 @@
+﻿@using AlluringDecors.Models;
+@model UserModel
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="card col-sm-12 col-md-8 col-lg-6 col-xl-5 mx-auto mt-5 px-0">
+        <ul class="nav nav-tabs">
+            <li class="active nav-item">
+                <a class="nav-link" id="UserTabButton" data-toggle="tab" href="#user">User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="AdminTabButton" data-toggle="tab" href="#admin">Admin</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="user" class="tab-pane active">
+                @using (Html.BeginForm("Login", "Account", new { type = "user" }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="card-header">
+                        <h3>Login to User Account</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Username)
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @id = "UserId" })
+                            @Html.ValidationMessageFor(m => m.Username)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password)
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "UserPassword" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="w-100 btn btn-primary rounded-pill">Login</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div id="admin" class="tab-pane fade">
+                @using (Html.BeginForm("Login", "Account", new { type = "admin" }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="card-header">
+                        <h3>Login to Admin Account</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Username)
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @id = "AdminId" })
+                            @Html.ValidationMessageFor(m => m.Username)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password)
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "AdminPassword" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="w-100 btn btn-primary rounded-pill">Login</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        let accountType = "@ViewBag.Account";
+        if (accountType == "") accountType = "User";
+        $(`#${accountType}TabButton`).click();
+    </script>
+}

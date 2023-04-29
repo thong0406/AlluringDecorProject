@@ -1,0 +1,21 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<AlluringDecors.Models.UserModel>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.Username</td>
+        <td>
+            <select id="usrRole_@item.Id" class="form-control" onchange="updateUserRole(@item.Id)">
+                @foreach (RoleModel rol in ViewBag.Roles)
+                {
+                    <option value="@rol.Id" @Html.Raw((rol.Name == item.UserRole.Role.Name) ? "selected" : "")>@rol.Name</option>
+                }
+            </select>
+        </td>
+        <td>
+            <button class="btn btn-danger rounded w-100 my-1" type="button" onclick="deleteUser(@item.Id)">Delete</button>
+        </td>
+    </tr>
+}

@@ -1,0 +1,40 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<AlluringDecors.Models.ServiceRequestModel>
+@foreach (var item in Model)
+{
+    <tr id="bil_@item.Id">
+        <td>
+            @Html.DisplayFor(modelItem => item.Bill.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceDomain.Domain.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceDomain.Service.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Receiver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bill.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bill.Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bill.DateSent)
+        </td>
+    </tr>
+}

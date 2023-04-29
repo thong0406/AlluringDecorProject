@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Abc\Desktop\AlluringDecor</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>01/02/2023 22:29:06</publishTime>
+    </File>
+    <File Include="bin/AlluringDecors.dll">
+      <publishTime>01/17/2023 12:37:45</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>01/02/2023 22:29:06</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>11/03/2015 17:43:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>01/02/2023 22:29:13</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>01/02/2023 22:29:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>01/02/2023 22:29:13</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>01/02/2023 22:29:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>01/02/2023 22:29:17</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>01/02/2023 22:29:18</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>01/02/2023 22:29:17</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>01/02/2023 22:29:18</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>01/02/2023 22:29:12</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/02/2023 22:29:14</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>01/02/2023 22:29:19</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>01/02/2023 22:29:19</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>01/02/2023 22:29:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>01/02/2023 22:29:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>01/02/2023 22:29:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>01/02/2023 22:29:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>01/02/2023 22:29:19</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>01/02/2023 22:29:19</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>01/02/2023 22:29:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>01/02/2023 22:29:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>01/02/2023 22:29:19</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>01/02/2023 22:29:20</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/02/2023 22:29:15</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/02/2023 22:29:19</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/02/2023 22:29:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>01/02/2023 22:29:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>01/02/2023 22:29:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>01/02/2023 22:29:15</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.css">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.css.map">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.min.css">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.min.css.map">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.css">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.css.map">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.min.css">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.min.css.map">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css.map">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>01/02/2023 22:29:06</publishTime>
+    </File>
+    <File Include="Images/Stock640x640.png">
+      <publishTime>01/16/2023 18:29:44</publishTime>
+    </File>
+    <File Include="Models/AlluringDecorModel.edmx.diagram">
+      <publishTime>01/17/2023 05:56:52</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/02/2023 22:46:51</publishTime>
+    </File>
+    <File Include="scripts/ai.0.22.9-build00167.js">
+      <publishTime>01/02/2023 22:29:10</publishTime>
+    </File>
+    <File Include="scripts/ai.0.22.9-build00167.min.js">
+      <publishTime>01/02/2023 22:29:10</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.bundle.js">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.bundle.js.map">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.bundle.min.js">
+      <publishTime>01/17/2023 11:54:53</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.bundle.min.js.map">
+      <publishTime>01/02/2023 22:29:10</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.js">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.js.map">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.min.js">
+      <publishTime>01/17/2023 11:54:54</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.min.js.map">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="scripts/jquery-3.6.0.js">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="scripts/jquery-3.6.0.min.js">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="scripts/jquery-3.6.0.min.map">
+      <publishTime>01/02/2023 22:29:10</publishTime>
+    </File>
+    <File Include="scripts/jquery-3.6.0.slim.js">
+      <publishTime>01/02/2023 22:29:10</publishTime>
+    </File>
+    <File Include="scripts/jquery-3.6.0.slim.min.js">
+      <publishTime>01/02/2023 22:29:11</publishTime>
+    </File>
+    <File Include="scripts/jquery-3.6.0.slim.min.map">
+      <publishTime>01/02/2023 22:29:10</publishTime>
+    </File>
+    <File Include="Text_Files/AboutUs.json">
+      <publishTime>01/17/2023 02:23:33</publishTime>
+    </File>
+    <File Include="Views/AboutUs/Index.cshtml">
+      <publishTime>01/17/2023 11:54:54</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>01/17/2023 09:38:28</publishTime>
+    </File>
+    <File Include="Views/Account/Register.cshtml">
+      <publishTime>01/17/2023 10:12:52</publishTime>
+    </File>
+    <File Include="Views/Admin/Domains.cshtml">
+      <publishTime>01/15/2023 17:21:42</publishTime>
+    </File>
+    <File Include="Views/Admin/Feedback.cshtml">
+      <publishTime>01/17/2023 09:23:46</publishTime>
+    </File>
+    <File Include="Views/Admin/Projects.cshtml">
+      <publishTime>01/17/2023 05:20:29</publishTime>
+    </File>
+    <File Include="Views/Admin/Requests.cshtml">
+      <publishTime>01/15/2023 13:46:26</publishTime>
+    </File>
+    <File Include="Views/Admin/Services.cshtml">
+      <publishTime>01/17/2023 11:01:05</publishTime>
+    </File>
+    <File Include="Views/Admin/Users.cshtml">
+      <publishTime>01/17/2023 08:50:27</publishTime>
+    </File>
+    <File Include="Views/Client/Bills.cshtml">
+      <publishTime>01/17/2023 01:49:49</publishTime>
+    </File>
+    <File Include="Views/Client/Requests.cshtml">
+      <publishTime>01/17/2023 01:52:57</publishTime>
+    </File>
+    <File Include="Views/ContactUs/Index.cshtml">
+      <publishTime>01/17/2023 11:29:50</publishTime>
+    </File>
+    <File Include="Views/FAQ/Index.cshtml">
+      <publishTime>01/17/2023 04:05:52</publishTime>
+    </File>
+    <File Include="Views/Feedback/Index.cshtml">
+      <publishTime>01/17/2023 06:39:01</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>01/17/2023 11:54:57</publishTime>
+    </File>
+    <File Include="Views/Projects/Index.cshtml">
+      <publishTime>01/17/2023 06:43:17</publishTime>
+    </File>
+    <File Include="Views/Services/Details.cshtml">
+      <publishTime>01/17/2023 12:24:22</publishTime>
+    </File>
+    <File Include="Views/Services/Index.cshtml">
+      <publishTime>01/17/2023 00:05:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminDomainTable.cshtml">
+      <publishTime>01/15/2023 17:22:45</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminProjectTable.cshtml">
+      <publishTime>01/17/2023 12:31:18</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminRequestTable.cshtml">
+      <publishTime>01/17/2023 01:08:23</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminServiceForm.cshtml">
+      <publishTime>01/16/2023 13:02:02</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminServiceFormType.cshtml">
+      <publishTime>01/17/2023 10:42:03</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminServicesTableByDomain.cshtml">
+      <publishTime>01/15/2023 21:25:48</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminServicesTableByService.cshtml">
+      <publishTime>01/15/2023 21:08:00</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminServicesTableByType.cshtml">
+      <publishTime>01/17/2023 10:54:48</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminUserTable.cshtml">
+      <publishTime>01/17/2023 08:39:49</publishTime>
+    </File>
+    <File Include="Views/Shared/_ClientBillTable.cshtml">
+      <publishTime>01/17/2023 01:49:55</publishTime>
+    </File>
+    <File Include="Views/Shared/_ClientRequestModal.cshtml">
+      <publishTime>01/17/2023 01:08:23</publishTime>
+    </File>
+    <File Include="Views/Shared/_ClientRequestTable.cshtml">
+      <publishTime>01/17/2023 12:36:24</publishTime>
+    </File>
+    <File Include="Views/Shared/_ClientServiceDomainTable.cshtml">
+      <publishTime>01/17/2023 12:09:08</publishTime>
+    </File>
+    <File Include="Views/Shared/_ClientServiceModal.cshtml">
+      <publishTime>01/17/2023 00:33:31</publishTime>
+    </File>
+    <File Include="Views/Shared/_FAQPartial.cshtml">
+      <publishTime>01/17/2023 04:05:54</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>01/17/2023 11:55:23</publishTime>
+    </File>
+    <File Include="Views/Shared/_ServiceExampleCarousel.cshtml">
+      <publishTime>01/17/2023 12:15:00</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>01/07/2023 18:28:24</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/17/2023 12:37:45</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

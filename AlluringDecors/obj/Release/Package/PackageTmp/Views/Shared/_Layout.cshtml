@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <script src="~/scripts/jquery-3.6.0.js"></script>
+    <script src="~/scripts/bootstrap.js"></script>
+</head>
+<body onload="fadeMessages()">
+    @if (@TempData["error"] != null)
+    {
+        <div id="ErrorMessageFixed" class="bg-danger text-white text-center w-100 p-1 fixed-top mt-5">@Html.Raw(TempData["error"])</div>
+    }
+    @if (@TempData["success"] != null)
+    {
+        <div id="SuccessMessageFixed" class="bg-success text-white text-center w-100 p-1 fixed-top mt-5">@Html.Raw(TempData["success"])</div>
+    }
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav container justify-content-end">
+                <li class="nav-item active">
+                    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("About Us", "Index", "AboutUs", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Contact Us", "Index", "ContactUs", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Feedback", "Index", "Feedback", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("FAQ", "Index", "FAQ", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Services", "Index", "Services", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Projects
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="@Url.Action("Index", "Projects")#OnGoing">On-Going</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Projects")#UpComing">Up-Coming</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Projects")#Acomplished">Acomplished</a>
+                    </div>
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @Html.ActionLink("Manage Users", "Users", "Admin", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Manage Services", "Services", "Admin", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Manage Projects", "Projects", "Admin", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Manage Domains", "Domains", "Admin", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Manage Requests", "Requests", "Admin", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("See Feedback", "Feedback", "Admin", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "dropdown-item" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Log Out", "LogOut", "Account", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "dropdown-item text-danger" })
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Account
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @Html.ActionLink("Your Requests", "Requests", "Client", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Your Bills", "Bills", "Client", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "dropdown-item" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Log Out", "LogOut", "Account", new { returnUrl = Request.Url.AbsoluteUri }, new { @class = "dropdown-item text-danger" })
+                            </div>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Account")?type=Login" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Account")?type=Register" class="nav-link">Register</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+<script>
+    function fadeMessages() {
+        $("#ErrorMessageFixed").delay(3000).fadeOut();
+        $("#SuccessMessageFixed").delay(3000).fadeOut();
+    }
+    function showErrorMessage(message) {
+        if ($("#ErrorMessageFixed").length == 0) $("body").append(`<div id="ErrorMessageFixed" class="bg-danger text-white text-center w-100 p-1 fixed-top mt-5"></div>`);
+        $("#ErrorMessageFixed").stop();
+        $("#ErrorMessageFixed").hide();
+        $("#ErrorMessageFixed").html(message);
+        $("#ErrorMessageFixed").fadeIn();
+        fadeMessages();
+    }
+    function showSuccessMessage(message) {
+        if ($("#SuccessMessageFixed").length == 0) $("body").append(`<div id="SuccessMessageFixed" class="bg-success text-white text-center w-100 p-1 fixed-top mt-5"></div>`);
+        $("#SuccessMessageFixed").stop();
+        $("#SuccessMessageFixed").hide();
+        $("#SuccessMessageFixed").html(message);
+        $("#SuccessMessageFixed").fadeIn();
+        fadeMessages();
+    }
+</script>
+@RenderSection("scripts", false)
+</html>

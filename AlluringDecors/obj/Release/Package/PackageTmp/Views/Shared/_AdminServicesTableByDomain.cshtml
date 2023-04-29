@@ -1,0 +1,17 @@
+﻿@using AlluringDecors.Models;
+@model IEnumerable<AlluringDecors.Models.ServiceDomainModel>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service.Name)
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger w-100 rounded" onclick="deleteServiceDomain(@item.Id)">Delete</button>
+        </td>
+    </tr>
+}

@@ -1,0 +1,67 @@
+﻿@using AlluringDecors.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-6 col-xl-6">
+
+        </div>
+        <div class="col-md-12 col-lg-6 col-xl-6">
+            <h2>About Us</h2>
+            <article class="text-justify" id="ArticleAboutUs">@ViewBag.text["About Us"]</article>
+            <!-- Từ đoạn này a để lại tạm cũng được -->
+            @if (User.Identity.IsAuthenticated ? Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin) : false)
+            {
+                <a href="#/" onclick="editArticle('AboutUsEditForm')" class="ml-auto">Edit</a>
+                <div id="AboutUsEditForm" style="display: none;" class="border border-round p-2">
+                    <textarea id="AboutUsEdit" style="height: 400px;" class="w-100 form-control text-justify">@ViewBag.text["About Us"]</textarea>
+                    <button type="button" class="btn btn-primary ml-auto mt-2" onclick="updateText('About Us')">Update</button>
+                </div>
+            }
+        </div>
+        <div class="col-md-12 col-lg-6 col-xl-6">
+            <h2>Who We Are</h2>
+            <article id="ArticleWhoWeAre" class="text-justify">@ViewBag.text["Who We Are"]</article>
+            @if (User.Identity.IsAuthenticated ? Misc.UserIsRole(User.Identity.Name, Misc.UserRoles.Admin) : false)
+            {
+                <a href="#/" onclick="editArticle('WhoWeAreEditForm')" class="ml-auto">Edit</a>
+                <div id="WhoWeAreEditForm" style="display: none;" class="border border-round p-2">
+                    <textarea id="AboutUsEdit" style="height: 400px;" class="w-100 form-control text-justify">@ViewBag.text["Who We Are"]</textarea>
+                    <button type="button" class="btn btn-primary ml-auto mt-2" onclick="updateText('Who We Are')">Update</button>
+                </div>
+            }
+        </div>
+        <div class="col-md-12 col-lg-6 col-xl-6">
+
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function editArticle(article) {
+            $(`#${article}`).slideToggle();
+        }
+        function updateText(article) {
+            const text = $(`#${article.replace(/\s/g, '')}Edit`).val();
+            $.ajax({
+                url: '@Url.Action("Edit")',
+                method: "POST",
+                data: {
+                    Article: article,
+                    Text: text
+                },
+                success: () => {
+                    $(`#Article${article.replace(/\s/g, '')}`).html(text);
+                    showSuccessMessage("Updated Successfully!");
+                },
+                error: () => {
+                    showErrorMessage("Request Failed!");
+                }
+            });
+        }
+    </script>
+}
